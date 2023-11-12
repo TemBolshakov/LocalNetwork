@@ -21,13 +21,13 @@
     </label>
     <br><br>
     Топология сети:
-    <input type="radio" id="choice1" name="contact" value="tire"/>
+    <input type="radio" id="choice1" name="topology" value="Шина" checked/>
     <label for="choice1">Шина</label>
-    <input type="radio" id="choice2" name="contact" value="circle"/>
+    <input type="radio" id="choice2" name="topology" value="Кольцо"/>
     <label for="choice2">Кольцо</label>
-    <input type="radio" id="choice3" name="contact" value="star"/>
+    <input type="radio" id="choice3" name="topology" value="Звезда"/>
     <label for="choice3">Звезда</label>
-    <input type="radio" id="choice4" name="contact" value="tree"/>
+    <input type="radio" id="choice4" name="topology" value="Дерево"/>
     <label for="choice4">Дерево</label>
     <br><br>
     <input type="submit" value="Добавить сеть"/>
