@@ -1,24 +1,21 @@
 package com.spring.bolshakov.localnetwork.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "parametrs")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class NetworkParametrs {
     @Id
     @Column(name = "id")
     private Long id;
     @Column(name = "number")
-    private String number;
+    private int number;
     @Column(name = "switch_access")
     private int switch_access;
     @Column(name = "switch_distribution")

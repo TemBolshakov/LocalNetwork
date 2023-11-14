@@ -1,10 +1,9 @@
 package com.spring.bolshakov.localnetwork.repositories;
 
 import com.spring.bolshakov.localnetwork.models.Network;
+import com.spring.bolshakov.localnetwork.models.NetworkParametrs;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface NetworkRepository extends JpaRepository<Network, Long> {
+public interface NetworkParametrsRepository extends JpaRepository<NetworkParametrs, Long> {
 
 }
