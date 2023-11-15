@@ -55,6 +55,7 @@ public class NetworkPagesController {
     @PostMapping("/network/delete/{id}")
     public String DeleteNetwork(@PathVariable Long id) {
         networkService.deleteNetwork(id);
+        networkParametrsService.deleteNetworkParametrs(id);
         return "redirect:/networks";
     }
 

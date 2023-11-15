@@ -22,4 +22,5 @@ public class NetworkParametrs {
     private int switch_distribution;
     @Column(name = "switch_core")
     private int switch_core;
+
 }

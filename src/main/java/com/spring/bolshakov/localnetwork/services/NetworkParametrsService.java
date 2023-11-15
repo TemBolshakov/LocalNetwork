@@ -47,9 +47,14 @@ public class NetworkParametrsService {
 
             networkParametrsRepository.save(networkParametrs);
         }
+
     }
 
     public NetworkParametrs getNetworkParametrsById(Long id) {
         return networkParametrsRepository.findById(id).orElse(null);
+    }
+
+    public void deleteNetworkParametrs(Long id) {
+        networkParametrsRepository.deleteById(id);
     }
 }
