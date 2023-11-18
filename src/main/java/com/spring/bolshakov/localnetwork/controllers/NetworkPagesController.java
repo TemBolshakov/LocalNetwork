@@ -26,6 +26,11 @@ public class NetworkPagesController {
         return "create";
     }
 
+    @GetMapping("/schemes/{id}")
+    public String schemes(@PathVariable Long id, Model model) {
+        model.addAttribute("parametrs", networkParametrsService.getNetworkParametrsById(id));
+        return "schemes";
+    }
 
     @GetMapping("/create_parametrs/{id}")
     public String createNetworkParametrs(@PathVariable Long id, Model model) {

@@ -10,7 +10,6 @@
 <h3>
     <a href="/create">Создать схему</a><br>
     <a href="/networks">Список схем</a><br>
-    <a href="/drag">Рисовать</a><br>
 </h3>
 </body>
 </html>
