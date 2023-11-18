@@ -25,6 +25,8 @@ public class NetworkPagesController {
     public String createNetwork(Model model) {
         return "create";
     }
+
+
     @GetMapping("/create_parametrs/{id}")
     public String createNetworkParametrs(@PathVariable Long id, Model model) {
         model.addAttribute("networks", networkService.getNetworkById(id));
@@ -35,7 +37,7 @@ public class NetworkPagesController {
         model.addAttribute("networks", networkService.listNetworks());
         return "networks";
     }
-
+    
     @GetMapping("/network/{id}")
     public String InfoNetwork(@PathVariable Long id, Model model) {
         model.addAttribute("networks", networkService.getNetworkById(id));
