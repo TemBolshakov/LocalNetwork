@@ -10,7 +10,6 @@
 <b>Название сети:</b>${networks.name}<br>
 <b>Описание:</b>${networks.description}<br>
 <b>Количество пользователей:</b>${networks.number}<br>
-<b>Топология сети:</b>${networks.topology}<br>
 
 <form action="/network/delete/${networks.id}" method="post">
     <input type="submit" value="Удалить сеть"/>

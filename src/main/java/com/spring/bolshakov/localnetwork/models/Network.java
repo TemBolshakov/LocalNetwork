@@ -21,7 +21,6 @@ public class Network {
     private String description;
     @Column(name = "number")
     private int number;
-    @Column(name = "topology")
-    private String topology;
+
 
 }

@@ -14,6 +14,9 @@
     <hr>
     <canvas id="drawingCanvas" width="1280px" height="720x"></canvas>
     <hr>
+    <h3><a href="/">На главную</a></h3>
+    <h3><a href="/networks">К списку сетей</a></h3>
+
     <script>
         const canvas = document.getElementById("drawingCanvas");
         if(canvas.getContext) {
@@ -153,7 +156,7 @@
 
 
             });
-            
+
             canvas.addEventListener('mouseup', function () {
                 selectedObject.isDragging = false;
                 selectedObject = null;
