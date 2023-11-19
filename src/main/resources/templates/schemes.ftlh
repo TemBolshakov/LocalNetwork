@@ -26,13 +26,23 @@
             let offsetX, offsetY;
             let selectedObject = null;
 
-            //Создание массивая коммутаторов доступа
+            const objectClient = [];
+            for(let i1 = 0; i1 < ${parametrs.number}; i1++) {
+                const newClient = {
+                    coordX: randomCoordinate(10, 1260),
+                    coordY: randomCoordinate(10, 160),
+                    sizeX: 10,
+                    sizeY: 10,
+                    isDragging: false
+                };
+                objectClient.push(newClient);
+            }
+
             const objectAccess = [];
-            //Заполнения параметров коммутатора доступа
-            for (let i = 0; i < ${parametrs.switch_access}; i++) {
+            for (let i2 = 0; i2 < ${parametrs.switch_access}; i2++) {
                 const newAccess = {
-                    coordX: randomCoordinate(20, 1250),
-                    coordY: randomCoordinate(20, 220),
+                    coordX: randomCoordinate(10, 1250),
+                    coordY: randomCoordinate(180, 330),
                     sizeX: 20,
                     sizeY: 20,
                     isDragging: false
@@ -41,10 +51,10 @@
             }
 
             const objectDisribution = [];
-            for (let j = 0; j < ${parametrs.switch_distribution}; j++) {
+            for (let i3 = 0; i3 < ${parametrs.switch_distribution}; i3++) {
                 const newDistibution = {
-                    coordX: randomCoordinate(30, 1240),
-                    coordY: randomCoordinate(250, 450),
+                    coordX: randomCoordinate(10, 1240),
+                    coordY: randomCoordinate(360, 500),
                     sizeX: 30,
                     sizeY: 30,
                     isDragging: false
@@ -53,10 +63,10 @@
             }
 
             const objectCore = [];
-            for (let k = 0; k < ${parametrs.switch_core}; k++) {
+            for (let i4 = 0; i4 < ${parametrs.switch_core}; i4++) {
                 const newCore = {
-                    coordX: randomCoordinate(40, 1230),
-                    coordY: randomCoordinate(500, 680),
+                    coordX: randomCoordinate(10, 1230),
+                    coordY: randomCoordinate(540, 670),
                     sizeX: 40,
                     sizeY: 40,
                     isDragging: false
@@ -65,58 +75,69 @@
             }
 
 
-            function drawScheme(objectAccess, objectDisribution, objectCore) {
+            function drawScheme(objectClient, objectAccess, objectDisribution, objectCore) {
                 ctx.clearRect(0, 0, 1280, 720);
-                //Отрисовка коммутаторов доступа
-                for (let i = 0; i < ${parametrs.switch_access}; i++) {
+
+                for (let j1 = 0; j1 < objectClient.length; j1++) {
+                    ctx.fillStyle = "indigo";
+                    ctx.fillRect(objectClient[j1].coordX, objectClient[j1].coordY, objectClient[j1].sizeX, objectClient[j1].sizeY);
+                }
+
+                for (let j2 = 0; j2 < objectAccess.length; j2++) {
                     ctx.fillStyle = "red";
-                    ctx.fillRect(objectAccess[i].coordX, objectAccess[i].coordY, objectAccess[i].sizeX, objectAccess[i].sizeY);
+                    ctx.fillRect(objectAccess[j2].coordX, objectAccess[j2].coordY, objectAccess[j2].sizeX, objectAccess[j2].sizeY);
                 }
 
-                for (let j = 0; j < ${parametrs.switch_distribution}; j++) {
+                for (let j3 = 0; j3 < objectDisribution.length; j3++) {
                     ctx.fillStyle = "blue";
-                    ctx.fillRect(objectDisribution[j].coordX, objectDisribution[j].coordY, objectDisribution[j].sizeX, objectDisribution[j].sizeY);
+                    ctx.fillRect(objectDisribution[j3].coordX, objectDisribution[j3].coordY, objectDisribution[j3].sizeX, objectDisribution[j3].sizeY);
                 }
 
-                for (let j = 0; j < ${parametrs.switch_core}; j++) {
+                for (let j4 = 0; j4 < objectCore.length; j4++) {
                     ctx.fillStyle = "green";
-                    ctx.fillRect(objectCore[j].coordX, objectCore[j].coordY, objectCore[j].sizeX, objectCore[j].sizeY);
+                    ctx.fillRect(objectCore[j4].coordX, objectCore[j4].coordY, objectCore[j4].sizeX, objectCore[j4].sizeY);
                 }
 
-                for (let x1 = 0; x1 < ${parametrs.switch_distribution}; x1++) {
-                    for (let x2 = 0; x2 < ${parametrs.switch_core}; x2++) {
-                        ctx.beginPath();
-                        ctx.moveTo(objectDisribution[x1].coordX + 15, objectDisribution[x1].coordY + 30);
-                        ctx.lineTo(objectCore[x2].coordX + 20, objectCore[x2].coordY);
-                        ctx.stroke();
-                    }
-                    for (let y = 0; y < ${parametrs.switch_access}; y++) {
-                        ctx.beginPath();
-                        ctx.moveTo(objectDisribution[x1].coordX + 15, objectDisribution[x1].coordY);
-                        ctx.lineTo(objectAccess[y].coordX + 10, objectAccess[y].coordY + 20);
-                        ctx.stroke();
-                    }
-                }
-
+                <#--for (let x1 = 0; x1 < ${parametrs.switch_distribution}; x1++) {-->
+                <#--    for (let x2 = 0; x2 < ${parametrs.switch_core}; x2++) {-->
+                <#--        ctx.beginPath();-->
+                <#--        ctx.moveTo(objectDisribution[x1].coordX + 15, objectDisribution[x1].coordY + 30);-->
+                <#--        ctx.lineTo(objectCore[x2].coordX + 20, objectCore[x2].coordY);-->
+                <#--        ctx.stroke();-->
+                <#--    }-->
+                <#--    for (let y = 0; y < ${parametrs.switch_access}; y++) {-->
+                <#--        ctx.beginPath();-->
+                <#--        ctx.moveTo(objectDisribution[x1].coordX + 15, objectDisribution[x1].coordY);-->
+                <#--        ctx.lineTo(objectAccess[y].coordX + 10, objectAccess[y].coordY + 20);-->
+                <#--        ctx.stroke();-->
+                <#--    }-->
+                <#--}-->
             }
 
             function getObjectUnderMouse(x, y) {
-                for(let j1 = objectAccess.length - 1; j1 >= 0; j1--) {
-                    const object = objectAccess[j1];
+                for(let b1 = objectClient.length - 1; b1 >= 0; b1--) {
+                    const object = objectClient[b1];
                     if(x >= object.coordX && x <= object.coordX + object.sizeX &&
                         y >= object.coordY && y <= object.coordY + object.sizeX) {
                         return object;
                     }
                 }
-                for(let j2 = objectDisribution.length - 1; j2 >= 0; j2--) {
-                    const object = objectDisribution[j2];
+                for(let b2 = objectAccess.length - 1; b2 >= 0; b2--) {
+                    const object = objectAccess[b2];
                     if(x >= object.coordX && x <= object.coordX + object.sizeX &&
                         y >= object.coordY && y <= object.coordY + object.sizeX) {
                         return object;
                     }
                 }
-                for(let j3 = objectCore.length - 1; j3 >= 0; j3--) {
-                    const object = objectCore[j3];
+                for(let b3 = objectDisribution.length - 1; b3 >= 0; b3--) {
+                    const object = objectDisribution[b3];
+                    if(x >= object.coordX && x <= object.coordX + object.sizeX &&
+                        y >= object.coordY && y <= object.coordY + object.sizeX) {
+                        return object;
+                    }
+                }
+                for(let b4 = objectCore.length - 1; b4 >= 0; b4--) {
+                    const object = objectCore[b4];
                     if(x >= object.coordX && x <= object.coordX + object.sizeX &&
                         y >= object.coordY && y <= object.coordY + object.sizeX) {
                         return object;
@@ -151,9 +172,8 @@
                     selectedObject.coordX = mouseX - offsetX;
                     selectedObject.coordY = mouseY - offsetY;
                     ctx.fillRect(selectedObject.coordX, selectedObject.coordY, selectedObject.sizeX, selectedObject.sizeY);
-                    drawScheme(objectAccess, objectDisribution, objectCore);
+                    drawScheme(objectClient, objectAccess, objectDisribution, objectCore);
                 }
-
 
             });
 
@@ -162,7 +182,7 @@
                 selectedObject = null;
             });
 
-            drawScheme(objectAccess, objectDisribution, objectCore);
+            drawScheme(objectClient, objectAccess, objectDisribution, objectCore);
         }
     </script>
 </body>
