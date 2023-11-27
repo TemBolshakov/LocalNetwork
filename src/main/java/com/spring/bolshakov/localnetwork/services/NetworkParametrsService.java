@@ -34,14 +34,13 @@ public class NetworkParametrsService {
             long id = network.getId();
             int number = network.getNumber();
 
-            double switch_access = Math.ceil((double) number /access/0.7);
-            double switch_distribution = Math.ceil(switch_access /distribution/0.7);
-            double switch_core = Math.ceil(switch_distribution/core/0.7);
+            double switch_access_ports = Math.ceil((double) access * 0.7);
+            double switch_distibution_ports = Math.ceil(distribution * 0.7);
+            double switch_core_ports = Math.ceil(core * 0.7);
 
-            double switch_access_ports = Math.floor(access*0.7);
-            double switch_distibution_ports = Math.floor(distribution*0.7);
-            double switch_core_ports = Math.floor(core*0.7);
-
+            double switch_access = Math.ceil((double) number / switch_access_ports);
+            double switch_distribution = Math.ceil(switch_access / switch_distibution_ports);
+            double switch_core = Math.ceil(switch_distribution / switch_core_ports);
 
             NetworkParametrs networkParametrs = new NetworkParametrs();
 
@@ -57,7 +56,6 @@ public class NetworkParametrsService {
 
             networkParametrsRepository.save(networkParametrs);
         }
-
     }
 
     public NetworkParametrs getNetworkParametrsById(Long id) {

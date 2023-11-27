@@ -27,33 +27,41 @@
             let selectedObject = null;
 
             const objectClient = [];
+            let test1 = 1280 / (${parametrs.number} + 1);
+            let coordStartClient = test1;
             for(let i1 = 0; i1 < ${parametrs.number}; i1++) {
                 const newClient = {
-                    coordX: randomCoordinate(10, 1260),
-                    coordY: randomCoordinate(10, 160),
+                    coordX: coordStartClient,
+                    coordY: randomCoordinate(100, 150),
                     sizeX: 10,
                     sizeY: 10,
                     isDragging: false
                 };
                 objectClient.push(newClient);
+                coordStartClient = coordStartClient + test1;
             }
 
             const objectAccess = [];
+
+            let test2 = 1280 / (${parametrs.switch_access} + 1);
+            let coordStartAccess = test2;
             for (let i2 = 0; i2 < ${parametrs.switch_access}; i2++) {
                 const newAccess = {
-                    coordX: randomCoordinate(10, 1250),
-                    coordY: randomCoordinate(180, 330),
+                    coordX: coordStartAccess,
+                    coordY: randomCoordinate(180, 300),
                     sizeX: 20,
                     sizeY: 20,
                     isDragging: false
                 };
                 objectAccess.push(newAccess);
+                coordStartAccess = coordStartAccess + test2;
             }
 
             const objectDisribution = [];
+
             for (let i3 = 0; i3 < ${parametrs.switch_distribution}; i3++) {
                 const newDistibution = {
-                    coordX: randomCoordinate(10, 1240),
+                    coordX: randomCoordinate(30, 1250),
                     coordY: randomCoordinate(360, 500),
                     sizeX: 30,
                     sizeY: 30,
@@ -63,10 +71,11 @@
             }
 
             const objectCore = [];
+
             for (let i4 = 0; i4 < ${parametrs.switch_core}; i4++) {
                 const newCore = {
-                    coordX: randomCoordinate(10, 1230),
-                    coordY: randomCoordinate(540, 670),
+                    coordX: randomCoordinate(40, 1240),
+                    coordY: randomCoordinate(540, 700),
                     sizeX: 40,
                     sizeY: 40,
                     isDragging: false
@@ -75,43 +84,102 @@
             }
 
 
-            function drawScheme(objectClient, objectAccess, objectDisribution, objectCore) {
+
+            function drawScheme(objectClient, objectAccess, objectDisribution) {
+
                 ctx.clearRect(0, 0, 1280, 720);
 
-                for (let j1 = 0; j1 < objectClient.length; j1++) {
+                objectClient.forEach((object) => {
                     ctx.fillStyle = "indigo";
-                    ctx.fillRect(objectClient[j1].coordX, objectClient[j1].coordY, objectClient[j1].sizeX, objectClient[j1].sizeY);
-                }
+                    ctx.fillRect(object.coordX, object.coordY, object.sizeX, object.sizeY);
+                });
 
-                for (let j2 = 0; j2 < objectAccess.length; j2++) {
+                objectAccess.forEach((object) => {
                     ctx.fillStyle = "red";
-                    ctx.fillRect(objectAccess[j2].coordX, objectAccess[j2].coordY, objectAccess[j2].sizeX, objectAccess[j2].sizeY);
-                }
+                    ctx.fillRect(object.coordX, object.coordY, object.sizeX, object.sizeY);
+                });
 
-                for (let j3 = 0; j3 < objectDisribution.length; j3++) {
+                objectDisribution.forEach((object) => {
                     ctx.fillStyle = "blue";
-                    ctx.fillRect(objectDisribution[j3].coordX, objectDisribution[j3].coordY, objectDisribution[j3].sizeX, objectDisribution[j3].sizeY);
-                }
+                    ctx.fillRect(object.coordX, object.coordY, object.sizeX, object.sizeY);
+                });
 
-                for (let j4 = 0; j4 < objectCore.length; j4++) {
+                objectCore.forEach((object) => {
                     ctx.fillStyle = "green";
-                    ctx.fillRect(objectCore[j4].coordX, objectCore[j4].coordY, objectCore[j4].sizeX, objectCore[j4].sizeY);
-                }
+                    ctx.fillRect(object.coordX, object.coordY, object.sizeX, object.sizeY);
+                });
 
-                <#--for (let x1 = 0; x1 < ${parametrs.switch_distribution}; x1++) {-->
-                <#--    for (let x2 = 0; x2 < ${parametrs.switch_core}; x2++) {-->
+
+                <#--let count_clients = 24;-->
+
+                <#--for(let g1 = 0; g1 < ${parametrs.switch_access}; g1++){-->
+                <#--    const count_access_ports = ${parametrs.switch_access_ports};-->
+                <#--    for(let q1 = 0; q1 < count_access_ports; q1++) {-->
                 <#--        ctx.beginPath();-->
-                <#--        ctx.moveTo(objectDisribution[x1].coordX + 15, objectDisribution[x1].coordY + 30);-->
-                <#--        ctx.lineTo(objectCore[x2].coordX + 20, objectCore[x2].coordY);-->
+                <#--        ctx.moveTo(objectAccess[g1].coordX, objectAccess[g1].coordY);-->
+                <#--        ctx.lineTo(objectClient[count_clients-1].coordX, objectAccess[count_clients-1].coordY);-->
                 <#--        ctx.stroke();-->
-                <#--    }-->
-                <#--    for (let y = 0; y < ${parametrs.switch_access}; y++) {-->
-                <#--        ctx.beginPath();-->
-                <#--        ctx.moveTo(objectDisribution[x1].coordX + 15, objectDisribution[x1].coordY);-->
-                <#--        ctx.lineTo(objectAccess[y].coordX + 10, objectAccess[y].coordY + 20);-->
-                <#--        ctx.stroke();-->
+                <#--        count_clients = count_clients - 1;-->
                 <#--    }-->
                 <#--}-->
+                let count1 = 0;
+                let tmp1 = ${parametrs.number};
+                for(let n1 = 0; n1 < ${parametrs.switch_access}; n1++) {
+                    if(tmp1 > ${parametrs.switch_access_ports}) {
+                        for(let n2 = 0; n2 < ${parametrs.switch_access_ports}; n2++) {
+                            ctx.beginPath();
+                            ctx.moveTo(objectAccess[n1].coordX + 10, objectAccess[n1].coordY);
+                            ctx.lineTo(objectClient[count1].coordX + 5, objectClient[count1].coordY + 10);
+                            ctx.stroke();
+                            count1++;
+                            tmp1--;
+                        }
+                    }
+                    else {
+                        for(let n2 = 0; n2 < tmp1; n2++) {
+                            ctx.beginPath();
+                            ctx.moveTo(objectAccess[n1].coordX + 10, objectAccess[n1].coordY);
+                            ctx.lineTo(objectClient[count1].coordX + 5, objectClient[count1].coordY + 10);
+                            ctx.stroke();
+                            count1++;
+                        }
+                    }
+                }
+
+                let count2 = 0;
+                let tmp2 = ${parametrs.switch_access};
+                for(let n3 = 0; n3 < ${parametrs.switch_distribution}; n3++) {
+                    if(tmp2 > ${parametrs.switch_distribution_ports}) {
+                        for(let n4 = 0; n4 < ${parametrs.switch_distribution_ports}; n4++) {
+                            ctx.beginPath();
+                            ctx.moveTo(objectDisribution[n3].coordX+15, objectDisribution[n3].coordY);
+                            ctx.lineTo(objectAccess[count2].coordX+10, objectAccess[count2].coordY+20);
+                            ctx.stroke();
+                            count2++;
+                            tmp2--;
+                        }
+                    }
+                    else {
+                        for(let n4 = 0; n4 < tmp2; n4++) {
+                            ctx.beginPath();
+                            ctx.moveTo(objectDisribution[n3].coordX+15, objectDisribution[n3].coordY);
+                            ctx.lineTo(objectAccess[count2].coordX+10, objectAccess[count2].coordY+20);
+                            ctx.stroke();
+                            count2++;
+                        }
+                    }
+                }
+
+                let count3 = 0;
+                for(let n5 = 0; n5 < ${parametrs.switch_core}; n5++) {
+                    for(let n6 = 0; n6 < ${parametrs.switch_core_ports}; n6++) {
+                        ctx.beginPath();
+                        ctx.moveTo(objectCore[n5].coordX+20, objectCore[n5].coordY);
+                        ctx.lineTo(objectDisribution[count3].coordX+15, objectDisribution[count3].coordY+30);
+                        ctx.stroke();
+                        count3++;
+                    }
+                }
             }
 
             function getObjectUnderMouse(x, y) {
@@ -172,7 +240,7 @@
                     selectedObject.coordX = mouseX - offsetX;
                     selectedObject.coordY = mouseY - offsetY;
                     ctx.fillRect(selectedObject.coordX, selectedObject.coordY, selectedObject.sizeX, selectedObject.sizeY);
-                    drawScheme(objectClient, objectAccess, objectDisribution, objectCore);
+                    drawScheme(objectClient, objectAccess, objectDisribution);
                 }
 
             });
@@ -183,6 +251,7 @@
             });
 
             drawScheme(objectClient, objectAccess, objectDisribution, objectCore);
+
         }
     </script>
 </body>
